@@ -26,9 +26,16 @@ class _TabLayoutState extends State<TabLayout> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            bottom: TabBar(
-              indicatorColor: Color(0xffff5305),
-              labelColor: Color(0xffff5305),
+            title: Center(
+              child: Image.asset(
+                'assets/logo.png',
+                fit: BoxFit.cover,
+                width: 100,
+              ),
+            ),
+            bottom: const TabBar(
+              indicatorColor:  Color(0xff896768),
+              labelColor: Color(0xff896768),
               tabs: [
                 Tab(
                   icon: Icon(Icons.person),

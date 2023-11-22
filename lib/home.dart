@@ -1,3 +1,4 @@
+import 'package:alvina/follow_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,7 +23,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xffd1beb7),
+        backgroundColor: const Color(0xffd1beb7),
         title: Center(
           child: Image.asset(
             'assets/logo.png',
@@ -37,7 +38,7 @@ class _HomeState extends State<Home> {
               },
 
             tooltip: 'فتح سلة التسوق',
-            icon: Icon(
+            icon: const Icon(
               Icons.shopping_cart_outlined,
             ),
           ),
@@ -85,7 +86,7 @@ class _HomeState extends State<Home> {
                     height: 36,
                   ),
                 ),
-                Text(
+                const Text(
                   'تابعينا على مواقع التواصل الاجتماعي'
                 )
               ],
@@ -98,19 +99,31 @@ class _HomeState extends State<Home> {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xffd1beb7),
               ),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => TabLayout())
-                  );
-                },
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text('تسجيل الدخول / تسجيل جديد'),
-                ),
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/logo.png',
+                    width: 100.0,
+                    height: 100.0,
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => const TabLayout())
+                        );
+                      },
+                      child: const Align(
+                        alignment: Alignment.bottomRight,
+                        child: Text('تسجيل الدخول / تسجيل جديد'),
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
             ListTile(
@@ -128,6 +141,10 @@ class _HomeState extends State<Home> {
             ListTile(
               title: const Text('متابعة الطلب'),
               onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const FollowUp())
+                );
               },
             ),
             Divider(),
