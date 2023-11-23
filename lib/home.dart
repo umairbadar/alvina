@@ -1,3 +1,4 @@
+import 'package:alvina/faq.dart';
 import 'package:alvina/follow_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -112,6 +113,7 @@ class _HomeState extends State<Home> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
+                        //Login, Signup...
                         Navigator.pop(context);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => const TabLayout())
@@ -135,6 +137,11 @@ class _HomeState extends State<Home> {
             ListTile(
               title: const Text('أسئلة واستفسارات'),
               onTap: () {
+                //FAQ's...
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const FAQ())
+                );
               },
             ),
             Divider(),
