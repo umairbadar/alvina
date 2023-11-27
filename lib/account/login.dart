@@ -1,3 +1,4 @@
+import 'package:alvina/widgets/footer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:alvina/widgets/custom_text_form_field.dart';
@@ -158,7 +159,8 @@ class _LoginState extends State<Login> {
                   )
               ),
             ],
-          )
+          ),
+          const Footer()
         ],
       ),
     );

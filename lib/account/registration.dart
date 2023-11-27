@@ -6,6 +6,7 @@ import 'package:alvina/home.dart';
 
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_form_field.dart';
+import '../widgets/footer.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -137,7 +138,8 @@ class _RegistrationState extends State<Registration> {
                   )
               ),
             ],
-          )
+          ),
+          const Footer()
         ],
       ),
     );

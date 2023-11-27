@@ -1,5 +1,7 @@
+import 'package:alvina/cart.dart';
 import 'package:alvina/faq.dart';
 import 'package:alvina/follow_up.dart';
+import 'package:alvina/widgets/footer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -34,10 +36,11 @@ class _HomeState extends State<Home> {
         ),
         actions: [
           IconButton(
-              onPressed: () {
-                print('object');
-              },
-
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Cart())
+              );
+            },
             tooltip: 'فتح سلة التسوق',
             icon: const Icon(
               Icons.shopping_cart_outlined,
@@ -91,7 +94,8 @@ class _HomeState extends State<Home> {
                   'تابعينا على مواقع التواصل الاجتماعي'
                 )
               ],
-            )
+            ),
+            const Footer()
           ],
         ),
       ),

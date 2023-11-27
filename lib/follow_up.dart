@@ -1,5 +1,6 @@
 import 'package:alvina/widgets/custom_button.dart';
 import 'package:alvina/widgets/custom_text_form_field.dart';
+import 'package:alvina/widgets/footer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -123,6 +124,7 @@ class _FollowUpState extends State<FollowUp> {
             onPressed: () {
             },
           ),
+          const Footer()
         ],
       ),
     );
