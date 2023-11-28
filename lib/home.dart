@@ -1,8 +1,9 @@
 import 'package:alvina/cart.dart';
 import 'package:alvina/faq.dart';
 import 'package:alvina/follow_up.dart';
+import 'package:alvina/products/product_list.dart';
+import 'package:alvina/widgets/custom_button.dart';
 import 'package:alvina/widgets/footer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:alvina/account/tab_layout.dart';
@@ -51,18 +52,45 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            InkWell(
+              onTap: () {
+                Uri url = Uri.parse('https://www.instagram.com/alvinaramallah');
+                _launchUrl(url);
+              },
+              child: Stack(
+                children: [
+                  Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/11/New-1400x789.png'),
+                  Positioned(
+                    bottom: 10,
+                    child: Align (
+                      alignment: Alignment.center,
+                      child: CustomButton(
+                          title: 'الدخول للمتجر',
+                          onPressed: () {
+                            Uri url = Uri.parse('https://www.instagram.com/alvinaramallah');
+                            _launchUrl(url);
+                          },
+                          width: 200.0,
+                          color: const Color(0xff896768)
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const Divider(),
             Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/09/ALVINA-NEW-0.png'),
-            Divider(),
+            const Divider(),
             Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/TUNiK-iNG-1219x800.jpg'),
-            Divider(),
+            const Divider(),
             Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/TRENc-iNG_1.jpg'),
-            Divider(),
+            const Divider(),
             Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/esofman-ing.jpg'),
-            Divider(),
+             const Divider(),
             Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/ELBiSE_1_2-1219x800.jpg'),
-            Divider(),
+             const Divider(),
             Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/BLUZ-iNG-1219x800.jpg'),
-            Divider(),
+             const Divider(),
             Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/ABiYE-iMG-1219x800.jpg'),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -137,7 +165,7 @@ class _HomeState extends State<Home> {
               onTap: () {
               },
             ),
-            Divider(),
+             const Divider(),
             ListTile(
               title: const Text('أسئلة واستفسارات'),
               onTap: () {
@@ -148,41 +176,61 @@ class _HomeState extends State<Home> {
                 );
               },
             ),
-            Divider(),
+             const Divider(),
             ListTile(
               title: const Text('متابعة الطلب'),
               onTap: () {
+                //Follow Up...
                 Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const FollowUp())
                 );
               },
             ),
-            Divider(),
+             const Divider(),
             ExpansionTile(
               title: const Text('شال/إيشارب'),
               children: [
                 ListTile(
-                  title: Text("شال"),
+                  title: const Text("شال"),
                   onTap: (){
-                    //action on press
+                    //Shawl...
+                    Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const ProductList(
+                            productId: "شال"
+                        ))
+                    );
                   },
                 ),
                 ListTile(
-                  title: Text("إيشارب"),
+                  title: const Text("إيشارب"),
                   onTap: (){
-                    //action on press
+                    //Isharb...
+                    Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const ProductList(
+                            productId: "إيشارب"
+                        ))
+                    );
                   },
                 ),
               ],
             ),
-            Divider(),
+             const Divider(),
             ListTile(
               title: const Text('شنطة'),
               onTap: () {
+                //Bag...
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const ProductList(
+                        productId: "شنطة"
+                    ))
+                );
               },
             ),
-            Divider(),
+             const Divider(),
             ExpansionTile(
               title: const Text('الموسم الشتوي'),
               children: [
@@ -217,7 +265,7 @@ class _HomeState extends State<Home> {
                   },
                 ),
                 ListTile(
-                  title: const Text('جاكيت شتوي'),
+                  title: const Text("جاكيت شتوي"),
                   onTap: () {
                   },
                 ),
@@ -238,7 +286,7 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            Divider(),
+             const Divider(),
             ExpansionTile(
               title: const Text('الموسم الصيفي'),
               children: [
@@ -304,7 +352,7 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            Divider(),
+             const Divider(),
             ExpansionTile(
               title: const Text('الموسم الجديد'),
               children: [
@@ -355,7 +403,7 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            Divider(),
+             const Divider(),
           ],
         ),
       )
