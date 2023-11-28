@@ -100,6 +100,15 @@ class _FooterState extends State<Footer> {
         const SizedBox(
           height: 10.0,
         ),
+        const Text(
+          'حقوق النشر محفوظة 2023 © الفينا فلسطين',
+          style: TextStyle(
+            fontSize: 16.0
+          ),
+        ),
+        const SizedBox(
+          height: 10.0,
+        ),
       ],
     );
   }
