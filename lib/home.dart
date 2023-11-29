@@ -2,9 +2,11 @@ import 'package:alvina/cart.dart';
 import 'package:alvina/faq.dart';
 import 'package:alvina/follow_up.dart';
 import 'package:alvina/products/product_list.dart';
+import 'package:alvina/providers/home_provider.dart';
 import 'package:alvina/widgets/custom_button.dart';
 import 'package:alvina/widgets/footer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:alvina/account/tab_layout.dart';
 
@@ -17,10 +19,20 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  var provider;
+  late Future<List<dynamic>?> future;
+
   Future<void> _launchUrl(Uri url) async {
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    future = Provider.of<HomeProvider>(context, listen: false).getData(context);
   }
 
   @override
@@ -81,7 +93,7 @@ class _HomeState extends State<Home> {
             const Divider(),
             Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/09/ALVINA-NEW-0.png'),
             const Divider(),
-            Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/TUNiK-iNG-1219x800.jpg'),
+            /*Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/TUNiK-iNG-1219x800.jpg'),
             const Divider(),
             Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/TRENc-iNG_1.jpg'),
             const Divider(),
@@ -91,7 +103,269 @@ class _HomeState extends State<Home> {
              const Divider(),
             Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/BLUZ-iNG-1219x800.jpg'),
              const Divider(),
-            Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/ABiYE-iMG-1219x800.jpg'),
+            Image.network('https://www.alvinaramallah.com/wp-content/uploads/2023/05/ABiYE-iMG-1219x800.jpg'),*/
+            //Winter Season Collection
+            const SizedBox(
+              height: 20.0,
+            ),
+            const Text(
+                'تشكيلة الموسم الشتوي',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black
+              ),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            FutureBuilder(
+              future: future,
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  List<dynamic>? data = snapshot.data;
+                  return SizedBox(
+                    height: 200.0,
+                    child: GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1
+                      ),
+                      itemCount: data!.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      physics: const ClampingScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10.0),
+                                child: Image.network(
+                                  '${data[index]['thumbnail']}',
+                                  fit: BoxFit.fill,
+                                  height: double.infinity,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 10,
+                                right: 5,
+                                child: Align (
+                                  alignment: Alignment.center,
+                                  child: Container (
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xff4c0d0d)
+                                    ),
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${data[index]['title']}'.toUpperCase(),
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                      child: Text("${snapshot.error}"));
+                }
+                return const Text('');
+              },
+            ),
+            //Summer Season Collection...
+            const SizedBox(
+              height: 20.0,
+            ),
+            const Text(
+              'تشكيلة الموسم الصيفي',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black
+              ),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            FutureBuilder(
+              future: future,
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  List<dynamic>? data = snapshot.data;
+                  return SizedBox(
+                    height: 200.0,
+                    child: GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1
+                      ),
+                      itemCount: data!.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      physics: const ClampingScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10.0),
+                                child: Image.network(
+                                  '${data[index]['thumbnail']}',
+                                  fit: BoxFit.fill,
+                                  height: double.infinity,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 10,
+                                right: 5,
+                                child: Align (
+                                  alignment: Alignment.center,
+                                  child: Container (
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xff4c0d0d)
+                                    ),
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${data[index]['title']}'.toUpperCase(),
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                      child: Text("${snapshot.error}"));
+                }
+                return const Text('');
+              },
+            ),
+            //Specially for you...
+            const SizedBox(
+              height: 20.0,
+            ),
+            const Text(
+              'خصيصاً لكِ',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black
+              ),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            FutureBuilder(
+              future: future,
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  List<dynamic>? data = snapshot.data;
+                  return SizedBox(
+                    height: 200.0,
+                    child: GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1
+                      ),
+                      itemCount: data!.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      physics: const ClampingScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10.0),
+                                child: Image.network(
+                                  '${data[index]['thumbnail']}',
+                                  fit: BoxFit.fill,
+                                  height: double.infinity,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 10,
+                                right: 5,
+                                child: Align (
+                                  alignment: Alignment.center,
+                                  child: Container (
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xff4c0d0d)
+                                    ),
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${data[index]['title']}'.toUpperCase(),
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 10,
+                                right: 0,
+                                child: Align (
+                                  alignment: Alignment.center,
+                                  child: Container (
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xffA03331)
+                                    ),
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: const Text(
+                                      '50%',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                      child: Text("${snapshot.error}"));
+                }
+                return const Text('');
+              },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
