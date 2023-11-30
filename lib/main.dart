@@ -1,4 +1,6 @@
 import 'package:alvina/providers/home_provider.dart';
+import 'package:alvina/providers/product_listing_provider.dart';
+import 'package:alvina/providers/url_launcher_provider.dart';
 import 'package:alvina/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -16,6 +18,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => HomeProvider()),
+        ChangeNotifierProvider(create: (_) => UrlLauncherProvider()),
+        ChangeNotifierProvider(create: (_) => ProductListingProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: const [

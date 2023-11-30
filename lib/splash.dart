@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:alvina/home.dart';
 
@@ -17,9 +16,9 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
 
-    Timer(Duration(seconds: 3), () =>
+    Timer(const Duration(seconds: 3), () =>
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => Home())
+            MaterialPageRoute(builder: (context) => const Home())
         )
     );
   }

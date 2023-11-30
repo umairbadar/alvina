@@ -1,8 +1,7 @@
-import 'dart:async';
-
+import 'package:alvina/providers/url_launcher_provider.dart';
 import 'package:alvina/widgets/footer.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
 
 class FAQ extends StatefulWidget {
   const FAQ({super.key});
@@ -16,12 +15,6 @@ class _FAQState extends State<FAQ> {
   @override
   void initState() {
     super.initState();
-  }
-
-  Future<void> _launchUrl(Uri url) async {
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
-    }
   }
 
   @override
@@ -1430,15 +1423,19 @@ class _FAQState extends State<FAQ> {
             const SizedBox(
               height: 10.0,
             ),
-            InkWell(
-              onTap: () {
-                Uri url = Uri.parse('https://wa.me/97222364343');
-                _launchUrl(url);
+            Consumer<UrlLauncherProvider> (
+              builder: (context, value, child) {
+                return InkWell(
+                  onTap: () {
+                    Uri url = Uri.parse('https://wa.me/97222364343');
+                    value.launch(url);
+                  },
+                  child: Image.asset(
+                    'assets/whatsapp_icon.png',
+                    height: 70.0,
+                  ),
+                );
               },
-              child: Image.asset(
-                'assets/whatsapp_icon.png',
-                height: 70.0,
-              ),
             ),
             const SizedBox(
               height: 10.0,

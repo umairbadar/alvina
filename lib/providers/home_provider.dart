@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
 
 import 'package:http/http.dart' as http;
+
+import '../products/product_list.dart';
 
 class HomeProvider with ChangeNotifier {
 
@@ -64,5 +65,14 @@ class HomeProvider with ChangeNotifier {
       debugPrint('No Internet connection');
     }
     return null;
+  }
+
+  void gotoProductListing(BuildContext context, String productId) {
+    Navigator.pop(context);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ProductList(
+            productId: productId
+        ))
+    );
   }
 }
