@@ -6,6 +6,7 @@ import 'package:alvina/widgets/custom_button.dart';
 import 'package:alvina/widgets/footer.dart';
 import 'package:alvina/widgets/side_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -388,7 +389,7 @@ class _HomeState extends State<Home> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        Uri url = Uri.parse('https://www.instagram.com/alvinaramallah');
+                        Uri url = Uri.parse(dotenv.get('instagram_url'));
                         value.launch(url);
                       },
                       icon: Image.asset(
@@ -399,7 +400,7 @@ class _HomeState extends State<Home> {
                     ),
                     IconButton(
                       onPressed: () {
-                        Uri url = Uri.parse('https://www.facebook.com/alvinaramallah');
+                        Uri url = Uri.parse(dotenv.get('facebook_url'));
                         value.launch(url);
 
                       },

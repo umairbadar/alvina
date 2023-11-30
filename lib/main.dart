@@ -7,14 +7,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
-  load();
-}
+Future<void> main() async {
 
-void load() async {
+  //Creating instance of dotenv...
   await dotenv.load(fileName: "assets/.env");
-  print(dotenv.get('FOO'));
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

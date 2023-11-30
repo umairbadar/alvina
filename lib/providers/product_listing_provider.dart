@@ -5,6 +5,7 @@ import 'package:alvina/widgets/custom_button.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,7 +25,7 @@ class ProductListingProvider with ChangeNotifier{
           pd.show(max: 100, msg: 'تحميل...');
         }
 
-        final response = await http.get(Uri.parse('https://dummyjson.com/products'),
+        final response = await http.get(Uri.parse(dotenv.get('product_list_api')),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             //'Authorization': _authorization,
@@ -78,7 +79,7 @@ class ProductListingProvider with ChangeNotifier{
           pd.show(max: 100, msg: 'تحميل...');
         }
 
-        final response = await http.get(Uri.parse('https://dummyjson.com/products/$productId'),
+        final response = await http.get(Uri.parse('${dotenv.get('product_list_api')}/$productId'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             //'Authorization': _authorization,
